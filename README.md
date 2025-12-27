@@ -1,6 +1,7 @@
-===============================
+
 Zeitgesteuerter Blaulichtfilter
 ===============================
+
 Das angefügte Programm setzt automatisiert einen Blaulichtfilter auf Linux-Desktops.
 Gesteuert wird das Programm mit dedizierten systemd-Timern, die einen Service auslösen, der wiederum ein bash Skript ausführt.
 
