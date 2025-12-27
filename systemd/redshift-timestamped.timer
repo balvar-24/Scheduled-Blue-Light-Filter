@@ -1,0 +1,15 @@
+[Unit]
+Description=Redshift Zeitsteuerung
+
+[Timer]
+Unit=redshift-timestamped.service
+#Zeitgesteuerte Ausführungen (20 Sekunden vor tatsächlicher Uhrzeit)
+OnCalendar=*-*-* 07:00:00
+OnCalendar=*-*-* 19:00:00
+OnCalendar=*-*-* 22:00:00
+Persistent=true
+AccuracySec=1s
+
+
+[Install]
+WantedBy=timers.target

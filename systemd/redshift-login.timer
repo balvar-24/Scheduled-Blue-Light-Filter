@@ -1,0 +1,9 @@
+[Timer]
+Unit=redshift-timestamped.service
+#Einmalig nach Login direkt ausführen
+OnActiveSec=20
+Persistent=false
+
+[Install]
+WantedBy=default.target
+
