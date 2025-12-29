@@ -1,52 +1,52 @@
 #!/bin/bash
-#Deinstallationsscript für Redshift Zeitsteuerung
+#Uninstallation script for Redshift Time Control
 
 set -e
 
-echo "╔═════════════════════════════════════╗"
-echo "║Redshift Zeitsteuerung Deinstallation║"
-echo "╚═════════════════════════════════════╝"
+echo "╔════════════════════════════════════╗"
+echo "║Redshift time control uninstallation║"
+echo "╚════════════════════════════════════╝"
 echo ""
-echo "Warnung: Diese Datei entfernt alle Redshift-Zeitsteuerungs-Komponenten."
+echo "Warning: This will remove all Redshift Time Control components."
 echo ""
-read -p "Trotzdem fortfahren? (j/n) " -n 1 -r
+read -p "Continue anyway? (j/n) " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Jj]$ ]]; then
-    echo "Abgebrochen."
+    echo "Cancelled."
     exit 0
 fi
 
 echo ""
-#Service & Timer stoppen
-echo "Stoppe Services..."
+#Stop service and timer
+echo "Stopping services..."
 systemctl --user stop redshift-timestamped.timer 2>/dev/null || true
 systemctl --user stop redshift-timestamped.service 2>/dev/null || true
 
-#Service & Timer deaktivieren
-echo "Deaktiviere Services..."
+#Disable service and timer
+echo "Disabling services..."
 systemctl --user disable redshift-timestamped.timer 2>/dev/null || true
 systemctl --user disable redshift-login.timer 2>/dev/null || true
 systemctl --user disable redshift-timestamped.service 2>/dev/null || true
 
-#Dateien löschen
-echo "Entferne Dateien..."
+#Remove files
+echo "Removing files..."
 rm -f ~/.config/systemd/user/redshift-timestamped.timer
 rm -f ~/.config/systemd/user/redshift-login.timer
 rm -f ~/.config/systemd/user/redshift-timestamped.service
 rm -f ~/.local/bin/redshift-timestamped.sh
 
-#Systemd neu laden
-echo "Lade systemd neu..."
+#Reload systemd
+echo "Realoading systemd..."
 systemctl --user daemon-reload
 
-#Redshift reset
-echo "Setze Redshift zurück..."
+#Reset redshift
+echo "Resetting redshift..."
 redshift -x 2>/dev/null || true
 
 echo ""
-echo "╔═════════════════════════════╗"
-echo "║Deinstallation abgeschlossen!║"
-echo "╚═════════════════════════════╝"
+echo "╔═════════════════════════╗"
+echo "║Uninstallation completed!║"
+echo "╚═════════════════════════╝"
 echo ""
-echo "Alle Dienste und Einstellungen zurückgesetzt."
-echo "Der Blaulichtfilter wurde zurückgestellt."
+echo "All services and settings have been reset."
+echo "The blue light filter has been reset."
