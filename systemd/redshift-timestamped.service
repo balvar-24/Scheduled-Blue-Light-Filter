@@ -1,10 +1,10 @@
 [Unit]
-Description=Redshift Blaulichtfilter setzen
+Description=Set redshift
 After=graphical-session.target
 
 [Service]
 Type=oneshot
-#Warten bis Desktop GUI vollständig geladen ist
+#Wait till desktop GUI is fully loaded
 #ExecStartPre=/bin/sleep 20
 ExecStart=%h/.local/bin/redshift-timestamped.sh
 #Logging
