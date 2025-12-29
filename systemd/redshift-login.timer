@@ -1,6 +1,6 @@
 [Timer]
 Unit=redshift-timestamped.service
-#Executed once after login
+#Executes once after login
 OnActiveSec=20
 Persistent=false
 
